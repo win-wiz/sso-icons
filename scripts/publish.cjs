@@ -42,10 +42,13 @@ log(`当前版本: ${currentVersion}`, 'blue');
 try {
   const gitStatus = execSync('git status --porcelain', { encoding: 'utf8' });
   if (gitStatus.trim()) {
-    log('检查到未提交的更改，请先提交所有更改', 'yellow');
-    process.exit(1);
+    log('检测到未提交的更改，自动提交中...', 'yellow');
+    execSync('git add .', { stdio: 'inherit' });
+    execSync('git commit -m "auto commit before publish"', { stdio: 'inherit' });
+    log('自动提交完成，继续发布流程', 'green');
+  } else {
+    log('Git 工作目录干净，继续发布流程', 'green');
   }
-  log('Git 工作目录干净，继续发布流程', 'green');
 } catch (error) {
   log('Git 状态检查失败，继续发布流程', 'yellow');
 }
@@ -69,11 +72,19 @@ try {
 }
 
 // 检查包是否已存在
+let isFirstPublish = false;
 try {
-  exec(`npm view ${packageJson.name} version`);
+  execSync(`npm view ${packageJson.name} version`, { stdio: 'pipe' });
   log('包已存在，将发布新版本', 'yellow');
 } catch (error) {
-  log('首次发布包', 'green');
+  // 404 视为首次发布
+  if (error.status === 1 && error.stderr && error.stderr.toString().includes('404')) {
+    log('首次发布包', 'green');
+    isFirstPublish = true;
+  } else {
+    log('检查包是否已存在时发生未知错误', 'red');
+    process.exit(1);
+  }
 }
 
 // 确认发布
