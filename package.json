@@ -1,0 +1,70 @@
+{
+  "name": "@tjsglion/sso-icons",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "SSO provider icons for authentication systems",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./react": {
+      "import": "./dist/react/SSOIcon.esm.js",
+      "require": "./dist/react/SSOIcon.js",
+      "types": "./dist/react/SSOIcon.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean",
+    "prepublishOnly": "npm run build",
+    "publish": "node scripts/publish.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sso",
+    "oauth",
+    "icons",
+    "authentication",
+    "react",
+    "typescript",
+    "svg",
+    "login",
+    "social-login"
+  ],
+  "author": "TJ <tjsglion@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/sso-icons.git"
+  },
+  "homepage": "https://github.com/your-username/sso-icons#readme",
+  "bugs": {
+    "url": "https://github.com/your-username/sso-icons/issues"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@types/react": "^18.0.0",
+    "rollup": "^3.0.0",
+    "rollup-plugin-dts": "^5.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "simple-icons": "^9.0.0",
+    "tslib": "^2.8.1"
+  }
+}
