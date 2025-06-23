@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { IconManager } from '../utils/icon-manager.js';
 import type { SSOProvider, SSOIconProps } from '../utils/icon-manager.js';

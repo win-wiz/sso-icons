@@ -1,6 +1,6 @@
 {
   "name": "@tjsglion/sso-icons",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "type": "module",
   "description": "SSO provider icons for authentication systems",
   "main": "dist/index.js",
@@ -24,16 +24,19 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
+    "build": "npm run clean && rollup -c",
     "dev": "rollup -c -w",
     "clean": "rm -rf dist",
-    "prebuild": "npm run clean",
+    "type-check": "tsc --noEmit",
+    "test": "echo \"No tests specified, skipping...\" && exit 0",
     "prepublishOnly": "npm run build",
-    "publish": "node scripts/publish.cjs",
-    "publish:patch": "node scripts/publish.cjs patch",
-    "publish:minor": "node scripts/publish.cjs minor",
-    "publish:major": "node scripts/publish.cjs major",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postpublish": "echo \"Package published successfully!\"",
+    "publish": "node scripts/publish.cjs --patch",
+    "publish:patch": "node scripts/publish.cjs --patch",
+    "publish:minor": "node scripts/publish.cjs --minor",
+    "publish:major": "node scripts/publish.cjs --major",
+    "publish:dry-run": "node scripts/publish.cjs --dry-run",
+    "publish:skip-tests": "node scripts/publish.cjs --skip-tests"
   },
   "keywords": [
     "sso",
