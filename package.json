@@ -27,7 +27,7 @@
     "clean": "rm -rf dist",
     "prebuild": "npm run clean",
     "prepublishOnly": "npm run build",
-    "publish": "node scripts/publish.js",
+    "publish": "node scripts/publish.cjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
