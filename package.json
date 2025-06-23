@@ -45,11 +45,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/sso-icons.git"
+    "url": "https://github.com/win-wiz/sso-icons.git"
   },
-  "homepage": "https://github.com/your-username/sso-icons#readme",
+  "homepage": "https://github.com/win-wiz/sso-icons#readme",
   "bugs": {
-    "url": "https://github.com/your-username/sso-icons/issues"
+    "url": "https://github.com/win-wiz/sso-icons/issues"
   },
   "peerDependencies": {
     "react": ">=16.8.0"
