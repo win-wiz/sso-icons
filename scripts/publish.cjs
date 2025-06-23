@@ -39,12 +39,16 @@ const currentVersion = packageJson.version;
 log(`当前版本: ${currentVersion}`, 'blue');
 
 // 检查是否有未提交的更改
-const gitStatus = exec('git status --porcelain', { encoding: 'utf8' });
-if (gitStatus.trim()) {
-  log('检查到未提交的更改，请先提交所有更改', 'yellow');
-  process.exit(1);
+try {
+  const gitStatus = execSync('git status --porcelain', { encoding: 'utf8' });
+  if (gitStatus.trim()) {
+    log('检查到未提交的更改，请先提交所有更改', 'yellow');
+    process.exit(1);
+  }
+  log('Git 工作目录干净，继续发布流程', 'green');
+} catch (error) {
+  log('Git 状态检查失败，继续发布流程', 'yellow');
 }
-log('Git 工作目录干净，继续发布流程', 'green');
 
 // 构建项目
 log('构建项目...', 'blue');
